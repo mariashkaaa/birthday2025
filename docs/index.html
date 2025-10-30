@@ -176,6 +176,7 @@
       transition: transform var(--t-fast), box-shadow var(--t-fast);
     }
     .image-slot:hover{ transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+    .small-epgraph{text-align: right}
 
     /* Кнопка «наверх» */
     .back-top{ position: fixed; right: 20px; bottom: 20px; z-index: 10; opacity: 0; pointer-events: none; transform: translateY(8px);
@@ -214,16 +215,14 @@
 
     <div class="topbar">
       <div class="page-title reveal" id="title">
-        <h1>Жизнь — поздравление</h1>
-        <p class="subtitle">интерактивная страница</p>
+        <h1>30.10.2025</h1>
       </div>
 
       <!-- ЭПИГРАФ (правый верх, sticky с отступом сверху) -->
       <section class="epigraph reveal" id="epigraph">
-        <h2>Эпиграф</h2>
         <div class="epigraph-body">
-          <p class="epigraph-text">Тихие узоры — в ячейках «Жизни». И каждая точка — как пожелание.</p>
-          <div class="byline">— автор эпиграфа</div>
+          <p class="epigraph-text">Ради тебя можно и жизнь обернуть вспять</p>
+          <div class="byline">— Б.К.</div>
         </div>
       </section>
     </div>
@@ -231,7 +230,7 @@
     <!-- БЛОК: СИМУЛЯТОР ЖИЗНИ -->
     <section class="life-card reveal" id="life">
       <div class="life-header">
-        <div class="life-title">Клеточный автомат «Жизнь» — интерактивное поле</div>
+        <div class="life-title">Клеточный автомат «Жизнь»</div>
         <div class="controls">
           <button class="btn" id="toggleBtn" aria-pressed="false">Старт</button>
           <button class="btn" id="resetBtn">Сброс</button>
@@ -242,9 +241,9 @@
       <div class="settings-panel" id="settingsPanel" aria-hidden="true">
         <div class="settings-row">
           <label class="label" for="tInput">T:</label>
-          <input class="input" id="tInput" type="number" min="1" max="50" step="1" value="8" title="Число шагов эволюции" />
+          <input class="input" id="tInput" type="number" min="1" max="50" step="1" value="5" title="Число шагов эволюции" />
           <label class="label" for="delayInput">задержка (мс):</label>
-          <input class="input" id="delayInput" type="number" min="100" max="5000" step="100" value="1500" title="Пауза между шагами" />
+          <input class="input" id="delayInput" type="number" min="100" max="5000" step="100" value="850" title="Пауза между шагами" />
         </div>
       </div>
 
@@ -301,8 +300,6 @@
       Вследствие устройства «Жизни» эта задача, к сожалению, не имеет простого алгоритмического решения, и остаётся только отправиться
       бороздить науку в поисках подходящего способа что-то всё-таки посчитать. Этим мы и займёмся.
     </p>
-
-    <div class="img-placeholder">место для изображения / иллюстрации эволюции</div>
   </div>
 </section>
 
@@ -622,8 +619,6 @@
       То есть по времени это будет не сильно лучше, чем строгий SAT, а скорее «безопаснее от разочарований». Почему же нам тогда,
       разочаровавшись в строгом подходе не обратиться полностью к оптимизациии? А мы это и сделаем!
     </p>
-
-    <div class="img-placeholder">место для изображения / схемы SAT → SC → Life</div>
   </div>
 </section>
 
@@ -707,7 +702,7 @@
       а тем или иным пороговым условием. Этот метод и позволил за разумное время получить очень неплохие конфигурации:
     </p>
 
-    <div class="img-placeholder">место для изображения / «до» и «после»</div>
+    <div class="img-placeholder"><img src = "images/life_SA_example.png> <p>Пример оптимизации с помощью SA + tabu</p></div>
 
     <p>
       Однако он имеет досадный недостаток: $X_0$ уж очень сильно похож на $X_T$, и поведение клеточного автомата слишком предсказуемо.
@@ -726,22 +721,19 @@
 <!-- БЛОК 4 (короткий завершающий, можно убрать или заменить) -->
 <section class="section reveal" id="s4">
   <div class="card">
-    <h3>Блок 4. Вместо эпилога</h3>
+    <h3>Благодарности</h3>
+    <strong>
+      Выражаю огромную благодарность за всеобъемлющую помощь и поддержку:
+    </strong>
     <p>
-      Тут можно перейти к близкой, но другой задаче — задаче максимальной выполнимости (MaxSAT). Всю булеву функцию можно разделить
-      на два типа клауз или, шире, подформул — те, для которых нам принципиально важно получить именно такие значения,
-      и те, где она только желательна. Тогда MaxSAT-решатель будет искать точные совпадения для клауз первого типа и минимизировать
-      (не)взвешенную ошибку для клауз второго типа.
+      ChatGPT — так подробно объяснять основы глупой бмочке заслуживает высших похвал
+      Python — обсчитать за последние 36 часов суммарно примерно 4,500k итераций оптимизатора — великая вычислительная мощь
+      Маша — если бы не ты, я бы ни за что не затеял что-то подобное
     </p>
-    <p>
-      Но, согласись, это какое-то странное натягивание оптимизационной логики на логику оптимизированного, но всё ещё перебора SAT.
-      То есть по времени это будет не сильно лучше, чем строгий SAT, а скорее «безопаснее от разочарований».
-      Почему же нам тогда, разочаровавшись в строгом подходе, не обратиться полностью к оптимизации?
-      <strong>А мы это и сделаем.</strong>
     </p>
-    <div class="img-placeholder">место для изображения / финальный кадр</div>
   </div>
 </section>
+
 </div>
     <!-- Кнопка «Вернуться наверх» -->
 <button class="btn back-top" id="backTopBtn" aria-label="Вернуться наверх">▲ Наверх</button>
